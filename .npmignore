@@ -1,0 +1,34 @@
+# 소스 파일
+src/
+
+# 테스트 파일
+tests/
+__tests__/
+*.test.js
+*.spec.js
+coverage/
+
+# 예제 및 문서
+examples/
+docs/
+demo/
+
+# 개발 설정 파일
+.github/
+.gitignore
+.eslintrc*
+.prettierrc*
+rollup.config.js
+jsdoc.json
+jest.config.js
+
+# 환경 변수
+.env
+.env.*
+
+# 기타
+node_modules/
+.DS_Store
+*.log
+.vscode/
+.idea/

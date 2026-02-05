@@ -1,6 +1,6 @@
 {
   "name": "@lukaplayground/aikit",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "type": "module",
   "description": "Universal AI API Client Framework - One interface for all AI providers",
   "main": "dist/aikit.js",
@@ -10,6 +10,7 @@
   "scripts": {
     "dev": "rollup -c -w",
     "build": "rollup -c",
+    "prepublishOnly": "npm run build",
     "test": "jest",
     "test:watch": "jest --watch",
     "lint": "eslint src/**/*.js",
@@ -35,7 +36,7 @@
   "bugs": {
     "url": "https://github.com/lukaPlayground/aikit/issues"
   },
-  "homepage": "https://github.com/lukaPlayground/aikit#readme",
+  "homepage": "https://lukaplayground.github.io/aikit/",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "^15.2.3",
@@ -48,7 +49,6 @@
   "dependencies": {},
   "files": [
     "dist",
-    "src",
     "README.md",
     "LICENSE"
   ]
