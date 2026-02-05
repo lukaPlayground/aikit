@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIKit - Basic Example</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+            font-family: inherit;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .response {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-card .label {
+            font-size: 0.85em;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .stat-card .value {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #667eea;
+        }
+
+        .error {
+            background: #fee;
+            border-left: 4px solid #f44;
+            padding: 15px;
+            border-radius: 8px;
+            color: #c33;
+            margin-top: 15px;
+        }
+
+        .info {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            border-radius: 8px;
+            color: #1976d2;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 AIKit</h1>
+            <p>Universal AI API Client - Simple Demo</p>
+        </div>
+
+        <div class="card">
+            <div class="info">
+                <strong>📝 Note:</strong> This is a demo. Add your API key and select a provider to start.
+            </div>
+
+            <div class="form-group">
+                <label for="provider">AI Provider</label>
+                <select id="provider">
+                    <option value="openai">OpenAI (GPT)</option>
+                    <option value="claude">Anthropic (Claude)</option>
+                    <option value="gemini">Google (Gemini)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="apiKey">API Key</label>
+                <input type="password" id="apiKey" placeholder="Enter your API key">
+            </div>
+
+            <div class="form-group">
+                <label for="message">Your Message</label>
+                <textarea id="message" placeholder="Type your message here...">안녕하세요! AI에 대해 간단히 설명해주세요.</textarea>
+            </div>
+
+            <button id="sendBtn" onclick="sendMessage()">Send Message</button>
+
+            <div id="loadingDiv" class="loading" style="display: none;">
+                ⏳ Processing...
+            </div>
+
+            <div id="errorDiv" class="error" style="display: none;"></div>
+
+            <div id="responseDiv" class="response" style="display: none;"></div>
+
+            <div class="stats" id="statsDiv" style="display: none;">
+                <div class="stat-card">
+                    <div class="label">Provider</div>
+                    <div class="value" id="statProvider">-</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">Model</div>
+                    <div class="value" id="statModel">-</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">Total Tokens</div>
+                    <div class="value" id="statTokens">-</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">From Cache</div>
+                    <div class="value" id="statCache">-</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include AIKit library -->
+    <script src="../../src/utils/CacheManager.js"></script>
+    <script src="../../src/utils/CostTracker.js"></script>
+    <script src="../../src/utils/ResponseValidator.js"></script>
+    <script src="../../src/providers/BaseAdapter.js"></script>
+    <script src="../../src/providers/OpenAIAdapter.js"></script>
+    <script src="../../src/providers/ClaudeAdapter.js"></script>
+    <script src="../../src/providers/GeminiAdapter.js"></script>
+    <script src="../../src/core/AIKit.js"></script>
+
+    <script>
+        let aikit = null;
+
+        async function sendMessage() {
+            const provider = document.getElementById('provider').value;
+            const apiKey = document.getElementById('apiKey').value;
+            const message = document.getElementById('message').value;
+
+            // Validation
+            if (!apiKey.trim()) {
+                showError('Please enter your API key');
+                return;
+            }
+
+            if (!message.trim()) {
+                showError('Please enter a message');
+                return;
+            }
+
+            // Initialize AIKit if needed
+            if (!aikit || aikit.config.provider !== provider) {
+                aikit = new AIKit({
+                    provider: provider,
+                    apiKey: apiKey,
+                    enableCache: true,
+                    enableCostTracking: true,
+                    maxRetries: 3
+                });
+            }
+
+            // UI updates
+            showLoading();
+            hideError();
+            hideResponse();
+            document.getElementById('sendBtn').disabled = true;
+
+            try {
+                // Send request
+                const response = await aikit.chat(message, {
+                    validate: {
+                        minLength: 10,
+                        maxLength: 5000
+                    }
+                });
+
+                // Display response
+                showResponse(response);
+                showStats(response);
+
+            } catch (error) {
+                showError(error.message);
+            } finally {
+                hideLoading();
+                document.getElementById('sendBtn').disabled = false;
+            }
+        }
+
+        function showLoading() {
+            document.getElementById('loadingDiv').style.display = 'block';
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingDiv').style.display = 'none';
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('errorDiv');
+            errorDiv.textContent = '❌ Error: ' + message;
+            errorDiv.style.display = 'block';
+        }
+
+        function hideError() {
+            document.getElementById('errorDiv').style.display = 'none';
+        }
+
+        function showResponse(response) {
+            const responseDiv = document.getElementById('responseDiv');
+            responseDiv.textContent = response.text;
+            responseDiv.style.display = 'block';
+        }
+
+        function hideResponse() {
+            document.getElementById('responseDiv').style.display = 'none';
+        }
+
+        function showStats(response) {
+            document.getElementById('statProvider').textContent = aikit.config.provider;
+            document.getElementById('statModel').textContent = response.model || '-';
+            document.getElementById('statTokens').textContent = response.usage?.total || '0';
+            document.getElementById('statCache').textContent = response.fromCache ? 'Yes' : 'No';
+            document.getElementById('statsDiv').style.display = 'grid';
+        }
+
+        // Allow Enter to send (Ctrl+Enter for new line)
+        document.getElementById('message').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.ctrlKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>
