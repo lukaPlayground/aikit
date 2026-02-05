@@ -7,6 +7,7 @@
     <meta name="keywords" content="ai, api, openai, claude, gemini, javascript, sdk">
     <title>AIKit - Universal AI API Client</title>
     <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="./assets/js/i18n.js"></script>
 </head>
 <body>
     <nav class="navbar">
@@ -15,24 +16,24 @@
                 <h1>🤖 AIKit</h1>
             </div>
             <div class="nav-links">
-                <a href="#features">Features</a>
-                <a href="#demo">Demo</a>
-                <a href="#docs">Docs</a>
-                <a href="https://github.com/lukaPlayground/aikit">GitHub</a>
+                <a href="#features" data-i18n="nav.features">Features</a>
+                <a href="#demo" data-i18n="nav.demo">Demo</a>
+                <a href="#docs" data-i18n="nav.docs">Docs</a>
+                <a href="https://github.com/lukaPlayground/aikit" data-i18n="nav.github">GitHub</a>
             </div>
         </div>
     </nav>
 
     <header class="hero">
         <div class="container">
-            <h1 class="hero-title">Universal AI API Client</h1>
-            <p class="hero-subtitle">
+            <h1 class="hero-title" data-i18n="hero.title">Universal AI API Client</h1>
+            <p class="hero-subtitle" data-i18n="hero.subtitle">
                 One interface for OpenAI, Claude, and Gemini.<br>
                 Built with pure JavaScript. No dependencies.
             </p>
             <div class="hero-buttons">
-                <a href="#demo" class="btn btn-primary">Try Demo</a>
-                <a href="https://github.com/lukaPlayground/aikit" class="btn btn-secondary">
+                <a href="#demo" class="btn btn-primary" data-i18n="hero.tryDemo">Try Demo</a>
+                <a href="https://github.com/lukaPlayground/aikit" class="btn btn-secondary" data-i18n="hero.viewGithub">
                     View on GitHub
                 </a>
             </div>
@@ -50,37 +51,37 @@ console.log(response.text);</code></pre>
 
     <section id="features" class="features">
         <div class="container">
-            <h2>Features</h2>
+            <h2 data-i18n="features.title">Features</h2>
             <div class="feature-grid">
                 <div class="feature-card">
                     <div class="feature-icon">🔄</div>
-                    <h3>Auto Fallback</h3>
-                    <p>Automatically switch to backup providers when API fails</p>
+                    <h3 data-i18n="feature.autoFallback.title">Auto Fallback</h3>
+                    <p data-i18n="feature.autoFallback.desc">Automatically switch to backup providers when API fails</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">💾</div>
-                    <h3>Smart Caching</h3>
-                    <p>LocalStorage-based caching prevents duplicate requests</p>
+                    <h3 data-i18n="feature.smartCaching.title">Smart Caching</h3>
+                    <p data-i18n="feature.smartCaching.desc">LocalStorage-based caching prevents duplicate requests</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">💰</div>
-                    <h3>Cost Tracking</h3>
-                    <p>Real-time monitoring of API usage costs</p>
+                    <h3 data-i18n="feature.costTracking.title">Cost Tracking</h3>
+                    <p data-i18n="feature.costTracking.desc">Real-time monitoring of API usage costs</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">✅</div>
-                    <h3>Response Validation</h3>
-                    <p>QA-focused validation for length, format, and content</p>
+                    <h3 data-i18n="feature.validation.title">Response Validation</h3>
+                    <p data-i18n="feature.validation.desc">QA-focused validation for length, format, and content</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🌍</div>
-                    <h3>Universal</h3>
-                    <p>Works with any language or framework</p>
+                    <h3 data-i18n="feature.universal.title">Universal</h3>
+                    <p data-i18n="feature.universal.desc">Works with any language or framework</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🚀</div>
-                    <h3>Zero Dependencies</h3>
-                    <p>Pure JavaScript, no external libraries needed</p>
+                    <h3 data-i18n="feature.zeroDeps.title">Zero Dependencies</h3>
+                    <p data-i18n="feature.zeroDeps.desc">Pure JavaScript, no external libraries needed</p>
                 </div>
             </div>
         </div>
@@ -88,13 +89,13 @@ console.log(response.text);</code></pre>
 
     <section id="demo" class="demo-section">
         <div class="container">
-            <h2>Interactive Demo</h2>
-            <p class="section-subtitle">Try AIKit right in your browser</p>
+            <h2 data-i18n="demo.title">Interactive Demo</h2>
+            <p class="section-subtitle" data-i18n="demo.subtitle">Try AIKit right in your browser</p>
             <div class="demo-container">
                 <iframe src="./demo/playground.html" class="demo-iframe"></iframe>
             </div>
             <p class="demo-note">
-                Note: You'll need your own API key to test. Get one from 
+                <span data-i18n="demo.note">Note: You'll need your own API key to test. Get one from</span>
                 <a href="https://platform.openai.com">OpenAI</a>, 
                 <a href="https://console.anthropic.com">Anthropic</a>, or 
                 <a href="https://makersuite.google.com">Google AI Studio</a>
@@ -104,23 +105,23 @@ console.log(response.text);</code></pre>
 
     <section id="docs" class="docs-section">
         <div class="container">
-            <h2>Documentation</h2>
+            <h2 data-i18n="docs.title">Documentation</h2>
             <div class="docs-grid">
                 <a href="./getting-started.html" class="doc-card">
-                    <h3>📚 Getting Started</h3>
-                    <p>Installation and basic usage</p>
+                    <h3 data-i18n="docs.gettingStarted.title">📚 Getting Started</h3>
+                    <p data-i18n="docs.gettingStarted.desc">Installation and basic usage</p>
                 </a>
                 <a href="./api/index.html" class="doc-card">
-                    <h3>📖 API Reference</h3>
-                    <p>Complete API documentation</p>
+                    <h3 data-i18n="docs.apiRef.title">📖 API Reference</h3>
+                    <p data-i18n="docs.apiRef.desc">Complete API documentation</p>
                 </a>
                 <a href="https://github.com/lukaPlayground/aikit/tree/main/examples" class="doc-card">
-                    <h3>💡 Examples</h3>
-                    <p>React, Vue, and vanilla JS examples</p>
+                    <h3 data-i18n="docs.examples.title">💡 Examples</h3>
+                    <p data-i18n="docs.examples.desc">React, Vue, and vanilla JS examples</p>
                 </a>
                 <a href="https://luka-playground.tistory.com" class="doc-card">
-                    <h3>✍️ Blog</h3>
-                    <p>Tutorials and use cases</p>
+                    <h3 data-i18n="docs.blog.title">✍️ Blog</h3>
+                    <p data-i18n="docs.blog.desc">Tutorials and use cases</p>
                 </a>
             </div>
         </div>
@@ -128,18 +129,18 @@ console.log(response.text);</code></pre>
 
     <section class="install-section">
         <div class="container">
-            <h2>Quick Install</h2>
+            <h2 data-i18n="install.title">Quick Install</h2>
             <div class="install-options">
                 <div class="install-card">
-                    <h3>CDN</h3>
+                    <h3 data-i18n="install.cdn">CDN</h3>
                     <pre><code>&lt;script src="https://cdn.jsdelivr.net/gh/lukaPlayground/aikit@latest/dist/aikit.min.js"&gt;&lt;/script&gt;</code></pre>
                 </div>
                 <div class="install-card">
-                    <h3>NPM</h3>
+                    <h3 data-i18n="install.npm">NPM</h3>
                     <pre><code>npm install @lukaplayground/aikit</code></pre>
                 </div>
                 <div class="install-card">
-                    <h3>GitHub</h3>
+                    <h3 data-i18n="install.github">GitHub</h3>
                     <pre><code>git clone https://github.com/lukaPlayground/aikit.git</code></pre>
                 </div>
             </div>
@@ -149,11 +150,11 @@ console.log(response.text);</code></pre>
     <footer class="footer">
         <div class="container">
             <p>
-                Created by <a href="https://github.com/lukaPlayground">Luka</a> | 
-                <a href="https://luka-playground.tistory.com">Blog</a> | 
-                <a href="https://github.com/lukaPlayground/aikit/blob/main/LICENSE">MIT License</a>
+                <span data-i18n="footer.createdBy">Created by</span> <a href="https://github.com/lukaPlayground">Luka</a> | 
+                <a href="https://luka-playground.tistory.com" data-i18n="footer.blog">Blog</a> | 
+                <a href="https://github.com/lukaPlayground/aikit/blob/main/LICENSE" data-i18n="footer.license">MIT License</a>
             </p>
-            <p class="footer-note">
+            <p class="footer-note" data-i18n="footer.note">
                 AIKit is not affiliated with OpenAI, Anthropic, or Google
             </p>
         </div>
