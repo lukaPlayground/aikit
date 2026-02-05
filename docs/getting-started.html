@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started - AIKit</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <style>
+        .docs-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .docs-content {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .docs-content h1 {
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .docs-content h2 {
+            color: #333;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .docs-content h3 {
+            color: #555;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .docs-content p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .docs-content pre {
+            background: #1a202c;
+            color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .docs-content code {
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .docs-content :not(pre) > code {
+            background: #f1f5f9;
+            color: #e53e3e;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .docs-content ul, .docs-content ol {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+
+        .docs-content li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        .tip {
+            background: #d1ecf1;
+            border-left: 4px solid #0dcaf0;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="docs-container">
+        <a href="./index.html" class="back-link">← Back to Home</a>
+        
+        <div class="docs-content">
+            <h1>Getting Started with AIKit</h1>
+            <p>AIKit을 사용하여 단 몇 줄의 코드로 여러 AI 제공자를 통합할 수 있습니다.</p>
+
+            <h2>설치</h2>
+
+            <h3>CDN 사용 (가장 빠름)</h3>
+            <pre><code>&lt;script src="https://cdn.jsdelivr.net/gh/lukaPlayground/aikit@latest/dist/aikit.min.js"&gt;&lt;/script&gt;</code></pre>
+
+            <h3>NPM 설치</h3>
+            <pre><code>npm install @lukaplayground/aikit</code></pre>
+
+            <h3>직접 다운로드</h3>
+            <p><a href="https://github.com/lukaPlayground/aikit/releases">GitHub Releases</a>에서 최신 버전을 다운로드하세요.</p>
+
+            <h2>기본 사용법</h2>
+
+            <h3>1. 간단한 예제</h3>
+            <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;script src="https://cdn.jsdelivr.net/gh/lukaPlayground/aikit@latest/dist/aikit.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;script&gt;
+        const ai = new AIKit({
+            provider: 'openai',
+            apiKey: 'your-openai-api-key'
+        });
+
+        ai.chat('Hello, AI!').then(response => {
+            console.log(response.text);
+        });
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+            <h3>2. 멀티 프로바이더 설정</h3>
+            <p>여러 AI 제공자를 설정하고 자동 폴백을 활성화할 수 있습니다:</p>
+            <pre><code>const ai = new AIKit({
+    providers: [
+        { name: 'openai', apiKey: 'key1', priority: 1 },
+        { name: 'claude', apiKey: 'key2', priority: 2 },
+        { name: 'gemini', apiKey: 'key3', priority: 3 }
+    ],
+    autoFallback: true  // 자동으로 다음 제공자로 전환
+});</code></pre>
+
+            <h3>3. 응답 검증</h3>
+            <p>QA 기능을 활용한 응답 검증:</p>
+            <pre><code>const response = await ai.chat('파이썬에 대해 설명해주세요', {
+    validate: {
+        minLength: 100,
+        maxLength: 1000,
+        mustInclude: ['파이썬', '프로그래밍'],
+        language: 'korean'
+    }
+});</code></pre>
+
+            <h3>4. 비용 추적</h3>
+            <p>API 사용 비용을 실시간으로 추적:</p>
+            <pre><code>const ai = new AIKit({
+    provider: 'openai',
+    apiKey: 'your-key',
+    enableCostTracking: true
+});
+
+await ai.chat('Hello');
+
+const report = ai.getCostReport();
+console.log(report);
+// {
+//   total: "0.0023",
+//   totalUSD: "$0.0023",
+//   byProvider: { openai: "$0.0023" },
+//   ...
+// }</code></pre>
+
+            <h3>5. 캐싱 활용</h3>
+            <p>중복 요청을 방지하여 비용 절감:</p>
+            <pre><code>const ai = new AIKit({
+    provider: 'openai',
+    apiKey: 'your-key',
+    enableCache: true
+});
+
+// 첫 번째 요청 - API 호출
+await ai.chat('2+2는?');
+
+// 같은 질문 - 캐시에서 반환 (비용 없음)
+await ai.chat('2+2는?');</code></pre>
+
+            <h2>주요 옵션</h2>
+
+            <h3>AIKit 생성자 옵션</h3>
+            <pre><code>new AIKit({
+    // 필수
+    provider: 'openai',
+    apiKey: 'your-key',
+
+    // 선택사항
+    enableCache: true,
+    enableCostTracking: true,
+    maxRetries: 3,
+    timeout: 30000,
+    autoFallback: false,
+
+    // 멀티 프로바이더
+    providers: [...]
+});</code></pre>
+
+            <h3>chat() 메서드 옵션</h3>
+            <pre><code>ai.chat('your message', {
+    model: 'gpt-4',
+    temperature: 0.7,
+    maxTokens: 1000,
+    
+    validate: {
+        minLength: 10,
+        maxLength: 1000,
+        mustInclude: ['keyword'],
+        format: 'json',
+        language: 'korean'
+    },
+    
+    skipCache: false
+});</code></pre>
+
+            <div class="tip">
+                <strong>💡 Tip:</strong> <a href="./demo/playground.html">인터랙티브 플레이그라운드</a>에서 
+                직접 테스트해보세요!
+            </div>
+
+            <h2>제공자별 특징</h2>
+
+            <h3>OpenAI (GPT)</h3>
+            <ul>
+                <li>모델: gpt-4, gpt-3.5-turbo</li>
+                <li>최대 토큰: 모델에 따라 다름</li>
+                <li>추가 옵션: topP, frequencyPenalty, presencePenalty</li>
+            </ul>
+
+            <h3>Claude (Anthropic)</h3>
+            <ul>
+                <li>모델: claude-3-opus, claude-3-sonnet, claude-3-haiku</li>
+                <li>최대 토큰: 4096</li>
+                <li>추가 옵션: topP, topK</li>
+            </ul>
+
+            <h3>Gemini (Google)</h3>
+            <ul>
+                <li>모델: gemini-pro, gemini-pro-vision</li>
+                <li>최대 토큰: 8192</li>
+                <li>추가 옵션: topK, safetySettings</li>
+            </ul>
+
+            <h2>유틸리티 메서드</h2>
+
+            <pre><code>// 통계 확인
+const stats = ai.getStats();
+
+// 비용 리포트
+const cost = ai.getCostReport();
+
+// 캐시 초기화
+ai.clearCache();
+
+// 설정 업데이트
+ai.updateConfig({ provider: 'claude' });</code></pre>
+
+            <h2>문제 해결</h2>
+
+            <h3>API 키 오류</h3>
+            <div class="note">
+                <strong>Error:</strong> API key is required<br>
+                <strong>해결:</strong> API 키가 올바르게 설정되었는지 확인하세요.
+            </div>
+
+            <h3>네트워크 오류</h3>
+            <div class="note">
+                <strong>Error:</strong> Network error: Unable to reach API endpoint<br>
+                <strong>해결:</strong> 인터넷 연결을 확인하세요. CORS 문제일 수도 있습니다.
+            </div>
+
+            <h3>검증 실패</h3>
+            <div class="note">
+                <strong>Error:</strong> Validation failed<br>
+                <strong>해결:</strong> validate 옵션의 제약 조건을 조정하세요.
+            </div>
+
+            <h2>다음 단계</h2>
+            <ul>
+                <li><a href="https://github.com/lukaPlayground/aikit">GitHub Repository</a> - 소스 코드 및 이슈</li>
+                <li><a href="https://github.com/lukaPlayground/aikit/tree/main/examples">Examples</a> - 더 많은 예제</li>
+                <li><a href="https://luka-playground.tistory.com">Blog</a> - 튜토리얼 및 사용 사례</li>
+            </ul>
+
+        </div>
+    </div>
+</body>
+</html>

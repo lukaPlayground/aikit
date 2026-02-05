@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AIKit - Universal AI API Client Framework for JavaScript">
+    <meta name="keywords" content="ai, api, openai, claude, gemini, javascript, sdk">
+    <title>AIKit - Universal AI API Client</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>🤖 AIKit</h1>
+            </div>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#demo">Demo</a>
+                <a href="#docs">Docs</a>
+                <a href="https://github.com/lukaPlayground/aikit">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <h1 class="hero-title">Universal AI API Client</h1>
+            <p class="hero-subtitle">
+                One interface for OpenAI, Claude, and Gemini.<br>
+                Built with pure JavaScript. No dependencies.
+            </p>
+            <div class="hero-buttons">
+                <a href="#demo" class="btn btn-primary">Try Demo</a>
+                <a href="https://github.com/lukaPlayground/aikit" class="btn btn-secondary">
+                    View on GitHub
+                </a>
+            </div>
+            <div class="code-example">
+                <pre><code>const ai = new AIKit({
+    provider: 'openai',
+    apiKey: 'your-key'
+});
+
+const response = await ai.chat('Hello, AI!');
+console.log(response.text);</code></pre>
+            </div>
+        </div>
+    </header>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2>Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Auto Fallback</h3>
+                    <p>Automatically switch to backup providers when API fails</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💾</div>
+                    <h3>Smart Caching</h3>
+                    <p>LocalStorage-based caching prevents duplicate requests</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Cost Tracking</h3>
+                    <p>Real-time monitoring of API usage costs</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✅</div>
+                    <h3>Response Validation</h3>
+                    <p>QA-focused validation for length, format, and content</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Universal</h3>
+                    <p>Works with any language or framework</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Zero Dependencies</h3>
+                    <p>Pure JavaScript, no external libraries needed</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="demo" class="demo-section">
+        <div class="container">
+            <h2>Interactive Demo</h2>
+            <p class="section-subtitle">Try AIKit right in your browser</p>
+            <div class="demo-container">
+                <iframe src="./demo/playground.html" class="demo-iframe"></iframe>
+            </div>
+            <p class="demo-note">
+                Note: You'll need your own API key to test. Get one from 
+                <a href="https://platform.openai.com">OpenAI</a>, 
+                <a href="https://console.anthropic.com">Anthropic</a>, or 
+                <a href="https://makersuite.google.com">Google AI Studio</a>
+            </p>
+        </div>
+    </section>
+
+    <section id="docs" class="docs-section">
+        <div class="container">
+            <h2>Documentation</h2>
+            <div class="docs-grid">
+                <a href="./getting-started.html" class="doc-card">
+                    <h3>📚 Getting Started</h3>
+                    <p>Installation and basic usage</p>
+                </a>
+                <a href="./api/index.html" class="doc-card">
+                    <h3>📖 API Reference</h3>
+                    <p>Complete API documentation</p>
+                </a>
+                <a href="https://github.com/lukaPlayground/aikit/tree/main/examples" class="doc-card">
+                    <h3>💡 Examples</h3>
+                    <p>React, Vue, and vanilla JS examples</p>
+                </a>
+                <a href="https://luka-playground.tistory.com" class="doc-card">
+                    <h3>✍️ Blog</h3>
+                    <p>Tutorials and use cases</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="install-section">
+        <div class="container">
+            <h2>Quick Install</h2>
+            <div class="install-options">
+                <div class="install-card">
+                    <h3>CDN</h3>
+                    <pre><code>&lt;script src="https://cdn.jsdelivr.net/gh/lukaPlayground/aikit@latest/dist/aikit.min.js"&gt;&lt;/script&gt;</code></pre>
+                </div>
+                <div class="install-card">
+                    <h3>NPM</h3>
+                    <pre><code>npm install @lukaplayground/aikit</code></pre>
+                </div>
+                <div class="install-card">
+                    <h3>GitHub</h3>
+                    <pre><code>git clone https://github.com/lukaPlayground/aikit.git</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>
+                Created by <a href="https://github.com/lukaPlayground">Luka</a> | 
+                <a href="https://luka-playground.tistory.com">Blog</a> | 
+                <a href="https://github.com/lukaPlayground/aikit/blob/main/LICENSE">MIT License</a>
+            </p>
+            <p class="footer-note">
+                AIKit is not affiliated with OpenAI, Anthropic, or Google
+            </p>
+        </div>
+    </footer>
+
+    <script src="./assets/js/main.js"></script>
+</body>
+</html>
