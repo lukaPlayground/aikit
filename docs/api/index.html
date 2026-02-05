@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Reference - AIKit</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        .api-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .api-content {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .api-content h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .api-content .subtitle {
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        .api-content h2 {
+            color: #333;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .api-content h3 {
+            color: #555;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .api-content h4 {
+            color: #667eea;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .api-content p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .api-content pre {
+            background: #1a202c;
+            color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .api-content code {
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .api-content :not(pre) > code {
+            background: #f1f5f9;
+            color: #e53e3e;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .api-content ul {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+
+        .api-content li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .api-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .api-content th {
+            background: #667eea;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .api-content td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .api-content tr:hover {
+            background: #f8f9fa;
+        }
+
+        .method-badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .toc {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .toc h3 {
+            margin-top: 0;
+            color: #667eea;
+        }
+
+        .toc ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .toc li {
+            margin-bottom: 8px;
+        }
+
+        .toc a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .toc a:hover {
+            color: #667eea;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="api-container">
+        <a href="../index.html" class="back-link">← Back to Home</a>
+        
+        <div class="api-content">
+            <h1>API Reference</h1>
+            <p class="subtitle">Complete documentation for AIKit</p>
+
+            <div class="toc">
+                <h3>Table of Contents</h3>
+                <ul>
+                    <li><a href="#constructor">Constructor</a></li>
+                    <li><a href="#methods">Methods</a>
+                        <ul>
+                            <li><a href="#chat">chat()</a></li>
+                            <li><a href="#getStats">getStats()</a></li>
+                            <li><a href="#getCostReport">getCostReport()</a></li>
+                            <li><a href="#clearCache">clearCache()</a></li>
+                            <li><a href="#updateConfig">updateConfig()</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#options">Configuration Options</a></li>
+                    <li><a href="#validation">Validation Rules</a></li>
+                    <li><a href="#providers">Provider-Specific Options</a></li>
+                </ul>
+            </div>
+
+            <h2 id="constructor">Constructor</h2>
+
+            <h3>new AIKit(config)</h3>
+            <p>Creates a new AIKit instance with the specified configuration.</p>
+
+            <h4>Parameters</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Required</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>provider</code></td>
+                        <td>string</td>
+                        <td>Yes*</td>
+                        <td>AI provider name: 'openai', 'claude', or 'gemini'</td>
+                    </tr>
+                    <tr>
+                        <td><code>apiKey</code></td>
+                        <td>string</td>
+                        <td>Yes*</td>
+                        <td>API key for the provider</td>
+                    </tr>
+                    <tr>
+                        <td><code>providers</code></td>
+                        <td>array</td>
+                        <td>No</td>
+                        <td>Array of provider configurations for multi-provider setup</td>
+                    </tr>
+                    <tr>
+                        <td><code>enableCache</code></td>
+                        <td>boolean</td>
+                        <td>No</td>
+                        <td>Enable LocalStorage caching (default: true)</td>
+                    </tr>
+                    <tr>
+                        <td><code>enableCostTracking</code></td>
+                        <td>boolean</td>
+                        <td>No</td>
+                        <td>Enable cost tracking (default: true)</td>
+                    </tr>
+                    <tr>
+                        <td><code>maxRetries</code></td>
+                        <td>number</td>
+                        <td>No</td>
+                        <td>Maximum retry attempts (default: 3)</td>
+                    </tr>
+                    <tr>
+                        <td><code>timeout</code></td>
+                        <td>number</td>
+                        <td>No</td>
+                        <td>Request timeout in milliseconds (default: 30000)</td>
+                    </tr>
+                    <tr>
+                        <td><code>autoFallback</code></td>
+                        <td>boolean</td>
+                        <td>No</td>
+                        <td>Auto-switch to next provider on failure (default: false)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>* Required unless using <code>providers</code> array</p>
+
+            <h4>Example</h4>
+            <pre><code>// Single provider
+const ai = new AIKit({
+    provider: 'openai',
+    apiKey: 'sk-...',
+    enableCache: true,
+    maxRetries: 3
+});
+
+// Multiple providers with auto-fallback
+const ai = new AIKit({
+    providers: [
+        { name: 'openai', apiKey: 'key1', priority: 1 },
+        { name: 'claude', apiKey: 'key2', priority: 2 }
+    ],
+    autoFallback: true
+});</code></pre>
+
+            <h2 id="methods">Methods</h2>
+
+            <h3 id="chat"><span class="method-badge">async</span>chat(message, options)</h3>
+            <p>Send a chat message to the AI and get a response.</p>
+
+            <h4>Parameters</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Required</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>message</code></td>
+                        <td>string</td>
+                        <td>Yes</td>
+                        <td>User message to send</td>
+                    </tr>
+                    <tr>
+                        <td><code>options</code></td>
+                        <td>object</td>
+                        <td>No</td>
+                        <td>Request options (see below)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>Options</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>model</code></td>
+                        <td>string</td>
+                        <td>Model to use (e.g., 'gpt-4', 'claude-3-opus')</td>
+                    </tr>
+                    <tr>
+                        <td><code>temperature</code></td>
+                        <td>number</td>
+                        <td>Creativity level (0.0-1.0)</td>
+                    </tr>
+                    <tr>
+                        <td><code>maxTokens</code></td>
+                        <td>number</td>
+                        <td>Maximum response length</td>
+                    </tr>
+                    <tr>
+                        <td><code>systemMessage</code></td>
+                        <td>string</td>
+                        <td>System prompt</td>
+                    </tr>
+                    <tr>
+                        <td><code>history</code></td>
+                        <td>array</td>
+                        <td>Conversation history</td>
+                    </tr>
+                    <tr>
+                        <td><code>validate</code></td>
+                        <td>object</td>
+                        <td>Response validation rules</td>
+                    </tr>
+                    <tr>
+                        <td><code>skipCache</code></td>
+                        <td>boolean</td>
+                        <td>Bypass cache (default: false)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>Returns</h4>
+            <p>Promise that resolves to response object:</p>
+            <pre><code>{
+    text: string,           // Response text
+    usage: {
+        input: number,      // Input tokens
+        output: number,     // Output tokens
+        total: number       // Total tokens
+    },
+    model: string,          // Model used
+    finishReason: string,   // Completion reason
+    fromCache: boolean,     // Whether from cache
+    timestamp: string       // ISO timestamp
+}</code></pre>
+
+            <h4>Example</h4>
+            <pre><code>const response = await ai.chat('Explain quantum computing', {
+    model: 'gpt-4',
+    temperature: 0.7,
+    maxTokens: 500,
+    validate: {
+        minLength: 100,
+        mustInclude: ['quantum']
+    }
+});
+
+console.log(response.text);
+console.log(`Tokens used: ${response.usage.total}`);</code></pre>
+
+            <h3 id="getStats">getStats()</h3>
+            <p>Get usage statistics.</p>
+
+            <h4>Returns</h4>
+            <pre><code>{
+    totalRequests: number,
+    successfulRequests: number,
+    failedRequests: number,
+    cachedResponses: number
+}</code></pre>
+
+            <h4>Example</h4>
+            <pre><code>const stats = ai.getStats();
+console.log(`Success rate: ${stats.successfulRequests / stats.totalRequests * 100}%`);</code></pre>
+
+            <h3 id="getCostReport">getCostReport()</h3>
+            <p>Get detailed cost report.</p>
+
+            <h4>Returns</h4>
+            <pre><code>{
+    total: string,              // Total cost as number string
+    totalUSD: string,           // Total cost formatted as USD
+    byProvider: object,         // Cost breakdown by provider
+    byModel: object,            // Cost breakdown by model
+    totalRequests: number,      // Total number of requests
+    averageCostPerRequest: string,
+    dailyAverage: string,
+    startDate: string,
+    lastRequest: string
+}</code></pre>
+
+            <h4>Example</h4>
+            <pre><code>const report = ai.getCostReport();
+console.log(`Total spent: ${report.totalUSD}`);
+console.log(`Average per request: ${report.averageCostPerRequest}`);</code></pre>
+
+            <h3 id="clearCache">clearCache()</h3>
+            <p>Clear all cached responses.</p>
+
+            <h4>Returns</h4>
+            <p>boolean - true if cache was cleared, false if caching is disabled</p>
+
+            <h4>Example</h4>
+            <pre><code>ai.clearCache();</code></pre>
+
+            <h3 id="updateConfig">updateConfig(newConfig)</h3>
+            <p>Update configuration options.</p>
+
+            <h4>Parameters</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>newConfig</code></td>
+                        <td>object</td>
+                        <td>Configuration options to update</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>Example</h4>
+            <pre><code>ai.updateConfig({
+    provider: 'claude',
+    maxRetries: 5
+});</code></pre>
+
+            <h2 id="options">Configuration Options</h2>
+
+            <h3>Chat Options</h3>
+            <p>Available options for the <code>chat()</code> method:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Type</th>
+                        <th>Default</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>model</code></td>
+                        <td>string</td>
+                        <td>Provider default</td>
+                        <td>Specific model to use</td>
+                    </tr>
+                    <tr>
+                        <td><code>temperature</code></td>
+                        <td>number</td>
+                        <td>0.7</td>
+                        <td>Response creativity (0.0-1.0)</td>
+                    </tr>
+                    <tr>
+                        <td><code>maxTokens</code></td>
+                        <td>number</td>
+                        <td>-</td>
+                        <td>Maximum response length</td>
+                    </tr>
+                    <tr>
+                        <td><code>topP</code></td>
+                        <td>number</td>
+                        <td>-</td>
+                        <td>Nucleus sampling parameter</td>
+                    </tr>
+                    <tr>
+                        <td><code>topK</code></td>
+                        <td>number</td>
+                        <td>-</td>
+                        <td>Top-K sampling parameter</td>
+                    </tr>
+                    <tr>
+                        <td><code>systemMessage</code></td>
+                        <td>string</td>
+                        <td>-</td>
+                        <td>System prompt/instructions</td>
+                    </tr>
+                    <tr>
+                        <td><code>history</code></td>
+                        <td>array</td>
+                        <td>[]</td>
+                        <td>Previous conversation messages</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 id="validation">Validation Rules</h2>
+
+            <p>Response validation options for the <code>validate</code> parameter:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rule</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>minLength</code></td>
+                        <td>number</td>
+                        <td>Minimum response length in characters</td>
+                    </tr>
+                    <tr>
+                        <td><code>maxLength</code></td>
+                        <td>number</td>
+                        <td>Maximum response length in characters</td>
+                    </tr>
+                    <tr>
+                        <td><code>mustInclude</code></td>
+                        <td>array</td>
+                        <td>Keywords that must appear in response</td>
+                    </tr>
+                    <tr>
+                        <td><code>mustNotInclude</code></td>
+                        <td>array</td>
+                        <td>Keywords that must not appear</td>
+                    </tr>
+                    <tr>
+                        <td><code>format</code></td>
+                        <td>string</td>
+                        <td>'json', 'email', 'url', 'number', 'markdown'</td>
+                    </tr>
+                    <tr>
+                        <td><code>language</code></td>
+                        <td>string</td>
+                        <td>'korean', 'english', 'japanese', 'chinese'</td>
+                    </tr>
+                    <tr>
+                        <td><code>regex</code></td>
+                        <td>string</td>
+                        <td>Custom regex pattern</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>Example</h4>
+            <pre><code>const response = await ai.chat('Write a JSON response', {
+    validate: {
+        format: 'json',
+        minLength: 50,
+        mustInclude: ['name', 'value']
+    }
+});</code></pre>
+
+            <h2 id="providers">Provider-Specific Options</h2>
+
+            <h3>OpenAI</h3>
+            <pre><code>{
+    model: 'gpt-4',              // or 'gpt-3.5-turbo'
+    temperature: 0.7,
+    topP: 1,
+    frequencyPenalty: 0,
+    presencePenalty: 0
+}</code></pre>
+
+            <h3>Claude (Anthropic)</h3>
+            <pre><code>{
+    model: 'claude-3-sonnet-20240229',  // opus, sonnet, haiku
+    temperature: 1.0,
+    topP: 1,
+    topK: 40
+}</code></pre>
+
+            <h3>Gemini (Google)</h3>
+            <pre><code>{
+    model: 'gemini-pro',
+    temperature: 0.9,
+    topK: 40,
+    topP: 1,
+    safetySettings: [...]
+}</code></pre>
+
+            <h2>Error Handling</h2>
+
+            <p>AIKit throws errors with descriptive messages. Always use try-catch:</p>
+
+            <pre><code>try {
+    const response = await ai.chat('Hello');
+    console.log(response.text);
+} catch (error) {
+    console.error('AI request failed:', error.message);
+    
+    // Common errors:
+    // - "API key is required"
+    // - "Network error: Unable to reach API endpoint"
+    // - "Validation failed: ..."
+    // - "All attempts failed. Last error: ..."
+}</code></pre>
+
+            <h2>TypeScript Support</h2>
+
+            <p>Type definitions are included. For TypeScript projects:</p>
+
+            <pre><code>import AIKit from '@lukaplayground/aikit';
+
+const ai: AIKit = new AIKit({
+    provider: 'openai',
+    apiKey: process.env.OPENAI_API_KEY!
+});</code></pre>
+
+            <h2>Next Steps</h2>
+
+            <ul>
+                <li><a href="../getting-started.html">Getting Started Guide</a></li>
+                <li><a href="https://github.com/lukaPlayground/aikit/tree/main/examples">Examples Repository</a></li>
+                <li><a href="https://github.com/lukaPlayground/aikit/issues">Report Issues</a></li>
+            </ul>
+
+        </div>
+    </div>
+</body>
+</html>
