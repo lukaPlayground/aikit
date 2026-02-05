@@ -1,6 +1,7 @@
 {
   "name": "@lukaplayground/aikit",
   "version": "0.1.0",
+  "type": "module",
   "description": "Universal AI API Client Framework - One interface for all AI providers",
   "main": "dist/aikit.js",
   "module": "dist/aikit.esm.js",

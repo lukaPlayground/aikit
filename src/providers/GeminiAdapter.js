@@ -25,7 +25,7 @@ class GeminiAdapter extends BaseAdapter {
             generationConfig: {
                 temperature: options.temperature ?? 0.9,
                 topK: options.topK || options.top_k,
-                topP: options.topP || options.top_p ?? 1,
+                topP: (options.topP || options.top_p) ?? 1,
                 maxOutputTokens: options.maxTokens || options.max_tokens || options.maxOutputTokens,
                 stopSequences: options.stopSequences || options.stop
             }
