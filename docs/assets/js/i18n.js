@@ -104,7 +104,7 @@ const translations = {
         'docs.apiRef.title': 'API Reference',
         'docs.apiRef.desc': 'Complete API documentation',
         'docs.examples.title': 'Examples',
-        'docs.examples.desc': 'React, Vue, PHP, and vanilla JS examples',
+        'docs.examples.desc': 'React, Vue, PHP and vanilla JS examples',
         'docs.portfolio.title': '👨‍💻 Portfolio',
         'docs.portfolio.desc': 'Part of Luka\'s developer portfolio',
         'docs.blog.title': 'Blog',
