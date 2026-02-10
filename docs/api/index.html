@@ -375,7 +375,7 @@ const ai = new AIKit({
 
             <h4>Example</h4>
             <pre><code>const response = await ai.chat('Explain quantum computing', {
-    model: 'gpt-4',
+    model: 'gpt-4o-mini',
     temperature: 0.7,
     maxTokens: 500,
     validate: {
@@ -478,7 +478,7 @@ console.log(`Average per request: ${report.averageCostPerRequest}`);</code></pre
                         <td><code>model</code></td>
                         <td>string</td>
                         <td>Provider default</td>
-                        <td>Specific model to use</td>
+                        <td>Specific model to use (e.g., 'gpt-4o-mini', 'claude-3-5-sonnet-20241022', 'gemini-1.5-flash')</td>
                     </tr>
                     <tr>
                         <td><code>temperature</code></td>
@@ -583,7 +583,7 @@ console.log(`Average per request: ${report.averageCostPerRequest}`);</code></pre
 
             <h3>OpenAI</h3>
             <pre><code>{
-    model: 'gpt-4',              // or 'gpt-3.5-turbo'
+    model: 'gpt-4o-mini',              // or 'gpt-3.5-turbo'
     temperature: 0.7,
     topP: 1,
     frequencyPenalty: 0,
@@ -592,7 +592,7 @@ console.log(`Average per request: ${report.averageCostPerRequest}`);</code></pre
 
             <h3>Claude (Anthropic)</h3>
             <pre><code>{
-    model: 'claude-3-sonnet-20240229',  // opus, sonnet, haiku
+    model: 'claude-3-5-sonnet-20241022',  // sonnet, haiku, opus
     temperature: 1.0,
     topP: 1,
     topK: 40
@@ -600,7 +600,7 @@ console.log(`Average per request: ${report.averageCostPerRequest}`);</code></pre
 
             <h3>Gemini (Google)</h3>
             <pre><code>{
-    model: 'gemini-pro',
+    model: 'gemini-1.5-flash',
     temperature: 0.9,
     topK: 40,
     topP: 1,
