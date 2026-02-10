@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIKit - Basic Example</title>
+    <title>AIKit Vanilla JS Example</title>
     <style>
         * {
             margin: 0;
@@ -160,13 +160,28 @@
             color: #1976d2;
             margin-bottom: 20px;
         }
+
+        .hint {
+            display: block;
+            margin-top: 0.3rem;
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        .hint.free {
+            color: #4caf50;
+        }
+        
+        .hint.paid {
+            color: #ff9800;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🤖 AIKit</h1>
-            <p>Universal AI API Client - Simple Demo</p>
+            <h1>🤖 AIKit Vanilla JS Example</h1>
+            <p>Universal AI API Client - Pure JavaScript</p>
         </div>
 
         <div class="card">
@@ -181,6 +196,15 @@
                     <option value="claude">Anthropic (Claude)</option>
                     <option value="gemini">Google (Gemini)</option>
                 </select>
+            </div>
+
+            <!-- ✅ 여기에 모델 선택 추가 -->
+            <div class="form-group">
+                <label for="model">Model</label>
+                <select id="model">
+                    <!-- JavaScript로 동적 생성 -->
+                </select>
+                <small id="model-hint" class="hint"></small>
             </div>
 
             <div class="form-group">
@@ -235,10 +259,69 @@
     <script src="../../src/core/AIKit.js"></script>
 
     <script>
+        // ✅ 모델 옵션 추가
+        const modelOptions = {
+            openai: [
+                { id: 'gpt-4o-mini', name: 'GPT-4o Mini (빠름, 저렴)', free: true },
+                { id: 'gpt-4o', name: 'GPT-4o (최신, 강력)', free: true },
+                { id: 'gpt-4-turbo', name: 'GPT-4 Turbo', free: true },
+                { id: 'gpt-3.5-turbo', name: 'GPT-3.5 Turbo (레거시)', free: true }
+            ],
+            claude: [
+                { id: 'claude-3-5-sonnet-20241022', name: 'Claude 3.5 Sonnet (최신)', free: false },
+                { id: 'claude-3-5-haiku-20241022', name: 'Claude 3.5 Haiku (빠름)', free: false },
+                { id: 'claude-3-opus-20240229', name: 'Claude 3 Opus (강력)', free: false }
+            ],
+            gemini: [
+                { id: 'gemini-1.5-flash', name: 'Gemini 1.5 Flash (추천)', free: true },
+                { id: 'gemini-1.5-flash-8b', name: 'Gemini 1.5 Flash 8B (경량)', free: true },
+                { id: 'gemini-1.5-pro', name: 'Gemini 1.5 Pro (강력)', free: true },
+                { id: 'gemini-2.0-flash-exp', name: 'Gemini 2.0 Flash (실험)', free: true }
+            ]
+        };
+
         let aikit = null;
+
+        // ✅ 모델 목록 업데이트 함수
+        function updateModels() {
+            const provider = document.getElementById('provider').value;
+            const modelSelect = document.getElementById('model');
+            const models = modelOptions[provider];
+            
+            modelSelect.innerHTML = '';
+            models.forEach(model => {
+                const option = document.createElement('option');
+                option.value = model.id;
+                option.textContent = model.name;
+                modelSelect.appendChild(option);
+            });
+            
+            updateModelHint();
+        }
+
+        // ✅ 모델 힌트 업데이트 함수
+        function updateModelHint() {
+            const provider = document.getElementById('provider').value;
+            const modelId = document.getElementById('model').value;
+            const modelHint = document.getElementById('model-hint');
+            const model = modelOptions[provider].find(m => m.id === modelId);
+            
+            if (model) {
+                modelHint.textContent = model.free ? '✅ 무료' : '💳 크레딧 필요';
+                modelHint.className = model.free ? 'hint free' : 'hint paid';
+            }
+        }
+
+        // ✅ Provider 변경 이벤트
+        document.getElementById('provider').addEventListener('change', updateModels);
+        document.getElementById('model').addEventListener('change', updateModelHint);
+
+        // ✅ 초기 모델 목록 설정
+        updateModels();
 
         async function sendMessage() {
             const provider = document.getElementById('provider').value;
+            const model = document.getElementById('model').value;  // ✅ 추가
             const apiKey = document.getElementById('apiKey').value;
             const message = document.getElementById('message').value;
 
@@ -271,8 +354,9 @@
             document.getElementById('sendBtn').disabled = true;
 
             try {
-                // Send request
+                // Send request (✅ model 옵션 추가)
                 const response = await aikit.chat(message, {
+                    model: model,  // ✅ 추가
                     validate: {
                         minLength: 10,
                         maxLength: 5000
