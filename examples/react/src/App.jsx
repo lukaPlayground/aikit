@@ -17,23 +17,37 @@ function App() {
       setError('Please enter an API key');
       return;
     }
-
+  
     setLoading(true);
     setError('');
     setResponse('');
-
+  
     try {
-      const aikit = new AIKit({
-        provider: provider,
-        apiKey: apiKey,
-        enableCache: true,
-        enableCostTracking: true
+      const res = await fetch('http://localhost:3000/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          provider: provider,
+          apiKey: apiKey,
+          message: message,
+          options: {
+            enableCache: true,
+            enableCostTracking: true
+          }
+        })
       });
-
-      const result = await aikit.chat(message);
-      setResponse(result.content);
+  
+      const result = await res.json();
+      
+      if (result.success) {
+        setResponse(result.data.content);
+      } else {
+        setError(result.error || 'An error occurred');
+      }
     } catch (err) {
-      setError(err.message || 'An error occurred');
+      setError('Failed to connect to proxy server. Make sure it is running on http://localhost:3000');
     } finally {
       setLoading(false);
     }
