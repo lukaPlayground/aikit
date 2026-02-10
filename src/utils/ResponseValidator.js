@@ -266,6 +266,7 @@ class ResponseValidator {
 }
 
 // Export
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = ResponseValidator;
-}
+// if (typeof module !== 'undefined' && module.exports) {
+//     module.exports = ResponseValidator;
+// }
+export default ResponseValidator;

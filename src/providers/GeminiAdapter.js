@@ -3,6 +3,8 @@
  * @class
  * @extends BaseAdapter
  */
+import BaseAdapter from './BaseAdapter.js';
+
 class GeminiAdapter extends BaseAdapter {
     constructor() {
         super();
@@ -276,6 +278,7 @@ class GeminiAdapter extends BaseAdapter {
 }
 
 // Export
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = GeminiAdapter;
-}
+//if (typeof module !== 'undefined' && module.exports) {
+//    module.exports = GeminiAdapter;
+//}
+export default GeminiAdapter;

@@ -3,6 +3,8 @@
  * @class
  * @extends BaseAdapter
  */
+import BaseAdapter from './BaseAdapter.js';
+
 class ClaudeAdapter extends BaseAdapter {
     constructor() {
         super();
@@ -199,6 +201,7 @@ class ClaudeAdapter extends BaseAdapter {
 }
 
 // Export
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = ClaudeAdapter;
-}
+// if (typeof module !== 'undefined' && module.exports) {
+//     module.exports = ClaudeAdapter;
+// }
+export default ClaudeAdapter;

@@ -236,6 +236,7 @@ class CostTracker {
 }
 
 // Export
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = CostTracker;
-}
+// if (typeof module !== 'undefined' && module.exports) {
+//     module.exports = CostTracker;
+// }
+export default CostTracker;

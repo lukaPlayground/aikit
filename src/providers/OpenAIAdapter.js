@@ -3,6 +3,8 @@
  * @class
  * @extends BaseAdapter
  */
+import BaseAdapter from './BaseAdapter.js';
+
 class OpenAIAdapter extends BaseAdapter {
     constructor() {
         super();
@@ -193,6 +195,7 @@ class OpenAIAdapter extends BaseAdapter {
 }
 
 // Export
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = OpenAIAdapter;
-}
+// if (typeof module !== 'undefined' && module.exports) {
+//     module.exports = OpenAIAdapter;
+// }
+export default OpenAIAdapter;

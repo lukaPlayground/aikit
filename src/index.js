@@ -1,21 +1,26 @@
 // Import all modules
-const modules = {
-    CacheManager: require('./utils/CacheManager.js'),
-    CostTracker: require('./utils/CostTracker.js'),
-    ResponseValidator: require('./utils/ResponseValidator.js'),
-    BaseAdapter: require('./providers/BaseAdapter.js'),
-    OpenAIAdapter: require('./providers/OpenAIAdapter.js'),
-    ClaudeAdapter: require('./providers/ClaudeAdapter.js'),
-    GeminiAdapter: require('./providers/GeminiAdapter.js'),
-    AIKit: require('./core/AIKit.js')
-};
+import CacheManager from './utils/CacheManager.js';
+import CostTracker from './utils/CostTracker.js';
+import ResponseValidator from './utils/ResponseValidator.js';
+import BaseAdapter from './providers/BaseAdapter.js';
+import OpenAIAdapter from './providers/OpenAIAdapter.js';
+import ClaudeAdapter from './providers/ClaudeAdapter.js';
+import GeminiAdapter from './providers/GeminiAdapter.js';
+import AIKit from './core/AIKit.js';
+
+// Attach utilities to AIKit for easy access
+AIKit.CacheManager = CacheManager;
+AIKit.CostTracker = CostTracker;
+AIKit.ResponseValidator = ResponseValidator;
+AIKit.BaseAdapter = BaseAdapter;
+AIKit.OpenAIAdapter = OpenAIAdapter;
+AIKit.ClaudeAdapter = ClaudeAdapter;
+AIKit.GeminiAdapter = GeminiAdapter;
 
 // Attach to global for browser usage
 if (typeof window !== 'undefined') {
-    Object.assign(window, modules);
+    window.AIKit = AIKit;
 }
 
-// Export for module systems
-module.exports = modules.AIKit;
-module.exports.default = modules.AIKit;
-Object.assign(module.exports, modules);
+// Default export only
+export default AIKit;

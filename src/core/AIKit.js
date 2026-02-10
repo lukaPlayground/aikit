@@ -2,6 +2,13 @@
  * AIKit - Universal AI API Client
  * @class
  */
+import OpenAIAdapter from '../providers/OpenAIAdapter.js';
+import ClaudeAdapter from '../providers/ClaudeAdapter.js';
+import GeminiAdapter from '../providers/GeminiAdapter.js';
+import CacheManager from '../utils/CacheManager.js';
+import CostTracker from '../utils/CostTracker.js';
+import ResponseValidator from '../utils/ResponseValidator.js';
+
 class AIKit {
     /**
      * @param {Object} config - Configuration object
@@ -89,11 +96,10 @@ class AIKit {
         };
 
         const AdapterClass = adapterMap[provider.toLowerCase()];
-        
         if (!AdapterClass) {
-            throw new Error(`AIKit: Unsupported provider '${provider}'. Supported: ${Object.keys(adapterMap).join(', ')}`);
+            throw new Error(`Unknown provider: ${provider}`);
         }
-
+        
         return new AdapterClass();
     }
 
@@ -272,6 +278,7 @@ class AIKit {
 }
 
 // Export for different module systems
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = AIKit;
-}
+// if (typeof module !== 'undefined' && module.exports) {
+//     module.exports = AIKit;
+// }
+export default AIKit;

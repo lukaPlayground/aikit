@@ -172,6 +172,7 @@ class BaseAdapter {
 }
 
 // Export
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = BaseAdapter;
-}
+// if (typeof module !== 'undefined' && module.exports) {
+//     module.exports = BaseAdapter;
+// }
+export default BaseAdapter;

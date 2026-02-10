@@ -200,6 +200,7 @@ class MemoryStorage {
 }
 
 // Export
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = CacheManager;
-}
+// if (typeof module !== 'undefined' && module.exports) {
+//     module.exports = CacheManager;
+// }
+export default CacheManager;

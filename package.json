@@ -1,11 +1,17 @@
 {
   "name": "@lukaplayground/aikit",
-  "version": "1.0.0",
-  "type": "module",
+  "version": "1.0.1",
   "description": "Universal AI API Client Framework - One interface for all AI providers",
-  "main": "dist/aikit.js",
-  "module": "dist/aikit.esm.js",
+  "main": "dist/aikit.umd.js",
+  "module": "dist/aikit.js",
   "browser": "dist/aikit.min.js",
+  "exports": {
+      ".": {
+        "import": "./dist/aikit.js",
+        "require": "./dist/aikit.umd.js",
+        "browser": "./dist/aikit.min.js"
+      }
+  },
   "types": "dist/aikit.d.ts",
   "scripts": {
     "dev": "rollup -c -w",
