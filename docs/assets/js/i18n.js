@@ -41,7 +41,9 @@ const translations = {
         'docs.apiRef.title': 'API 레퍼런스',
         'docs.apiRef.desc': '완전한 API 문서',
         'docs.examples.title': '예제',
-        'docs.examples.desc': 'React, Vue, 바닐라 JS 예제',
+        'docs.examples.desc': 'React, Vue, PHP, 바닐라 JS 예제',
+        'docs.portfolio.title': '포트폴리오',
+        'docs.portfolio.desc': '루까의 개발자 포트폴리오 프로젝트',
         'docs.blog.title': '블로그',
         'docs.blog.desc': '튜토리얼 및 사용 사례',
 
@@ -51,7 +53,11 @@ const translations = {
         'install.npm': 'NPM',
         'install.github': 'GitHub',
 
+        // Portfolio Banner
+        'portfolio.banner': '🎯 이 프로젝트는 <strong>루까의 개발자 포트폴리오</strong>의 일부입니다 — JavaScript SDK 설계, npm 배포, 멀티 프레임워크 통합을 보여주기 위해 제작된 오픈소스입니다. <a href="https://lukaplayground.tistory.com" target="_blank">블로그 시리즈 읽기 →</a>',
+
         // Footer
+        'footer.portfolio': '🎯 <a href="https://lukaplayground.tistory.com" target="_blank">루까의 개발자 포트폴리오</a>의 일부로 제작됨',
         'footer.createdBy': '제작자',
         'footer.blog': '블로그',
         'footer.license': 'MIT 라이선스',
@@ -98,7 +104,9 @@ const translations = {
         'docs.apiRef.title': 'API Reference',
         'docs.apiRef.desc': 'Complete API documentation',
         'docs.examples.title': 'Examples',
-        'docs.examples.desc': 'React, Vue, and vanilla JS examples',
+        'docs.examples.desc': 'React, Vue, PHP, and vanilla JS examples',
+        'docs.portfolio.title': '👨‍💻 Portfolio',
+        'docs.portfolio.desc': 'Part of Luka\'s developer portfolio',
         'docs.blog.title': 'Blog',
         'docs.blog.desc': 'Tutorials and use cases',
 
@@ -108,7 +116,11 @@ const translations = {
         'install.npm': 'NPM',
         'install.github': 'GitHub',
 
+        // Portfolio Banner
+        'portfolio.banner': '🎯 This project is part of <strong>Luka\'s developer portfolio</strong> — an open-source Universal AI API Client built to demonstrate JavaScript SDK design, npm publishing, and multi-framework integration. <a href="https://lukaplayground.tistory.com" target="_blank">Read the blog series →</a>',
+
         // Footer
+        'footer.portfolio': '🎯 Built as part of <a href="https://lukaplayground.tistory.com" target="_blank">Luka\'s developer portfolio</a>',
         'footer.createdBy': 'Created by',
         'footer.blog': 'Blog',
         'footer.license': 'MIT License',
