@@ -6,11 +6,11 @@
   "module": "dist/aikit.js",
   "browser": "dist/aikit.min.js",
   "exports": {
-      ".": {
-        "import": "./dist/aikit.js",
-        "require": "./dist/aikit.umd.js",
-        "browser": "./dist/aikit.min.js"
-      }
+    ".": {
+      "import": "./dist/aikit.js",
+      "require": "./dist/aikit.umd.js",
+      "browser": "./dist/aikit.min.js"
+    }
   },
   "types": "dist/aikit.d.ts",
   "scripts": {
@@ -52,7 +52,9 @@
     "jsdoc": "^4.0.2",
     "rollup": "^4.9.6"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@lukaplayground/aikit": "^1.0.1"
+  },
   "files": [
     "dist",
     "README.md",
