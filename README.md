@@ -6,6 +6,8 @@
 **📖 [Documentation](https://lukaPlayground.github.io/aikit/getting-started.html)** | 
 **🎮 [Playground](https://lukaPlayground.github.io/aikit/demo/playground.html)**
 
+> ⚠️ **Disclaimer**: AIKit is an **unofficial** third-party library and is not affiliated with, endorsed by, or sponsored by OpenAI, Anthropic, or Google.
+
 AIKit은 순수 JavaScript로 작성된 경량 라이브러리로, 여러 AI API 제공자를 통일된 인터페이스로 사용할 수 있게 해줍니다.
 
 ## 🎯 주요 특징
@@ -73,6 +75,19 @@ npm run build
 # 테스트
 npm test
 ```
+
+## ⚠️ Disclaimer
+
+AIKit은 **비공식** 서드파티 라이브러리입니다. OpenAI, Anthropic, Google과 제휴 관계가 없습니다.
+
+- OpenAI is a trademark of OpenAI, LLC
+- Claude is a trademark of Anthropic, PBC  
+- Gemini is a trademark of Google, LLC
+
+각 AI 제공자의 서비스 약관을 반드시 확인하고 준수해 주세요:
+- [OpenAI Terms of Service](https://openai.com/policies/terms-of-use)
+- [Anthropic Terms of Service](https://www.anthropic.com/legal/consumer-terms)
+- [Google AI Terms of Service](https://ai.google.dev/terms)
 
 ## 📝 라이센스
 
